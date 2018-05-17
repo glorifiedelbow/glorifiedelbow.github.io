@@ -1,1 +1,140 @@
+<!DOCTYPE html>
+<head>
+<title>Text Reducer</title>
 
+<link rel = "icon" type = "image/png" href = "T.png" />
+
+<style>
+
+html * {
+   font-size: 30px;
+   background-color: #EEE;
+   font-family: Arial Black;
+   color: #333;
+}
+
+textarea {
+	background-color: rgb(225,225,225);
+	border: none;
+	color: #888;
+	width: 0;
+}
+
+p {
+	font-size: 20px;
+	color: #BBB;
+}
+
+h1 {
+	font-size: 40px;
+	color: #AAA;
+}
+
+</style>
+</head>
+
+<body>
+
+<textarea id = 'Message' placeholder = 'Enter text to reduce'></textarea><br/><br/>
+<textarea id = 'Code' placeholder = 'Enter reduced text'></textarea>
+
+<h1>About</h1>
+
+<p>Have you ever had a message that they wouldn't let you send because it exceeded the word limit? Oftentimes, you'll have text of some sort that is too long and for whatever reason needs to be shorter. There is a large amount of redundancy in human language, and I created this text reducer program in an attempt to reduce that redundancy as much as I could.</p>
+<p>All you have to do is enter a message into the top text field and it will automatically convert it in the bottom one. You can also paste reduced code into the bottom field and it will convert it back into text in the top one.</p>
+
+<script>
+
+var alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','0','1','2','3','4','5','6','7','8','9',' ','-','=','[',']',';',"'",',','.','/','`','!','@','#','$','%','^','&','*','(','_','+','{','}','|',':','"','<','>','?','~',];
+var alphabet_long = createList();
+
+var enc = document.getElementById('Message');
+var dec = document.getElementById('Code');
+
+w = document.body.clientWidth;
+document.body.style.margin = (w * 0.02).toString() + 'px';
+
+enc.style.width = (w * 0.9).toString() + 'px';
+enc.style.height = screen.height/3 + 'px';
+dec.style.width = (w * 0.9).toString() + 'px';
+dec.style.height = screen.height/3 + 'px';
+
+enc.oninput = function(){
+    dec.value = createCode(enc.value);
+};
+
+dec.oninput = function(){
+    enc.value = createText(dec.value);
+};
+
+function createList(){
+	var aLen = alphabet.length;
+	var list = [];
+	for(i=0;i<aLen;i++){
+		for(j=0;j<aLen;j++){
+			list[aLen * i + j] = alphabet[i] + alphabet[j];
+		};
+	};
+	return list;
+};
+
+function createCode(str){
+	var sLen = str.length;
+	var aLen = alphabet.length;
+	var tmp = '';
+	for(i=0;i<sLen;i++){
+		var inList = false;
+		for(j=0;j<aLen;j++){
+			if(str[i]===alphabet[j]){
+				inList = true;
+				break;
+			};
+		};
+		if(inList){
+			tmp = tmp + str[i];
+		};
+	};
+	
+	if(tmp.length % 2 === 1){
+		tmp = tmp + ' ';
+	};
+	
+	sLen = tmp.length / 2;
+	aLen = alphabet_long.length;
+	var c;
+	var code = '';
+	for(i=0;i<sLen;i++){
+		c = tmp[2 * i] + tmp[2 * i + 1];
+			for(j=0;j<aLen;j++){
+				if(c === alphabet_long[j]){
+					break;
+			};
+		};
+
+		code = code + String.fromCharCode(j + 1000);
+	};
+	
+	return code;
+};
+
+
+
+
+function createText(code){
+	var cLen = code.length;
+	var text = '';
+	var tmp;
+	for(i=0;i<cLen;i++){
+		tmp = alphabet_long[code[i].charCodeAt(0) - 1000];
+		text = text + tmp;
+	};
+
+	return text;
+};
+
+
+
+</script>
+
+</body>
+</html>

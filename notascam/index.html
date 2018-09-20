@@ -1,0 +1,91 @@
+<html>
+<head>
+<title>Test</title>
+<style>
+
+@font-face {
+	  font-family: font;
+	  src: url('font.ttf');
+}
+
+.aa {
+  position: absolute;
+  width: 75%;
+  height: 75%;
+  top: 12.5%;
+  left: 12.5%;
+  background: black;
+  font-size: 150%;
+  font-family: font;
+  color: #999;
+  text-align: center;
+}
+
+</style>
+</head>
+<body onload = "mess()" style = "background:#666;">
+<div class = "aa">
+<br/>
+<img src = "fake-virus.png" width = "8%">
+<h1 style = "color:#C44; font-size:100%" id = "time">60:00</h1>
+<h1 style = "color:red; font-size:200%;" id = "c">WARNING</h1>
+<p id = "d"> 
+Your device has been encrypted and your hard drive will be cleared within 60 minutes. Enter your credit card number below and your files will be released.
+</p>
+<h1 style = "font-size:50%;">
+Это даже не настоящая тролль-лол, я даже не знаю русских
+</h1>
+<input placeholder = "XXXX-XXXX-XXXX-XXXX-XXXX" size = 26>
+<button onclick = "message()">Submit</button>
+<button onclick = "troll()" id = "b">Opt out of payment</button>
+</div>
+<script>
+
+function mess(){
+	setTimeout(function() {
+		alert("'russian_computer_virus.exe' was successfully installed on your device!");
+	}, 500);
+	
+	count();
+}
+
+var minutes = 60;
+var seconds = 00;
+
+time = document.getElementById("time");
+
+function count() {
+	
+	seconds--;
+	if (seconds < 0){
+		seconds = 59;
+		minutes--;
+	}
+	if (minutes < 0)
+		minutes = 59
+		
+	time.innerText = minutes + ":";
+	if (seconds < 10) time.innerText = time.innerText + "0";
+	time.innerText = time.innerText + seconds;
+	
+	setTimeout(count, 1000);
+	
+}
+
+
+b = document.getElementById("b");
+
+function message(){
+	alert("Your credit information has been logged and your bank account has been cleared.");
+}
+
+function troll() {
+	b.innerText = b.innerText + b.innerText;
+	//c.innerText = c.innerText + c.innerText;
+	//d.innerText = d.innerText + d.innerText
+	setTimeout(troll, 200);
+}
+
+</script>
+</body>
+</html>

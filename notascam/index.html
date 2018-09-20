@@ -38,7 +38,7 @@ Your device has been encrypted and your hard drive will be cleared within 60 min
 </h1>
 <input placeholder = "XXXX-XXXX-XXXX-XXXX-XXXX" size = 26>
 <button onclick = "message()">Submit</button>
-<button onclick = "troll()" id = "b">Opt out of payment</button>
+<button onclick = "troll();troll2();" id = "b">Opt out of payment</button>
 </div>
 <script>
 
@@ -75,16 +75,20 @@ function count() {
 
 
 b = document.getElementById("b");
+d = document.getElementById("d");
 
 function message(){
 	alert("Your credit information has been logged and your bank account has been cleared.");
 }
-
+	
 function troll() {
-	b.innerText = b.innerText + b.innerText;
-	//c.innerText = c.innerText + c.innerText;
-	//d.innerText = d.innerText + d.innerText
-	setTimeout(troll, 200);
+	d.innerText = "Can't opt out of payment! ";
+	setTimeout(function(){}, 200);
+}
+
+function troll2() {
+	d.innerText = d.innerText + d.innerText;
+	setTimeout(troll2, 200);
 }
 
 </script>

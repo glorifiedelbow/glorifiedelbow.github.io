@@ -43,7 +43,9 @@ Your device has been encrypted and your hard drive will be cleared within 60 min
 <script>
 	
 function f(){
-	alert("'russian_computer_virus.exe' was successfully installed on your device!");
+	setTimeout(function(){
+		alert("'russian_computer_virus.exe' was successfully installed on your device!");
+	}, 2000);
 	count();
 }
 
@@ -83,8 +85,10 @@ function troll() {
 	setTimeout(function(){}, 600);
 }
 
+var temp;
 function troll2() {
-	d.innerText = d.innerText + d.innerText;
+	temp = d.innerText;
+	d.innerText = temp + temp;
 	setTimeout(troll2, 600);
 }
 
